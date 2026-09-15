@@ -1,0 +1,64 @@
+<html>
+<body>
+
+<h1>THN Access Portal</h1>
+
+<button onclick="generateKey()">
+Generate THN Key
+</button>
+
+<br><br>
+
+<p id="generatedKey"></p>
+
+<input id="keyInput" placeholder="Enter THN Key">
+
+<button onclick="enterPortal()">
+Enter
+</button>
+
+<script>
+
+function generateKey() {
+
+    let key =
+    Math.random().toString(36).substring(2, 10);
+
+    localStorage.setItem(
+        "thnkey",
+        key
+    );
+
+    document.getElementById("generatedKey").innerHTML =
+        "Generated Key: " + key;
+
+}
+
+function enterPortal() {
+
+    let enteredKey =
+    document.getElementById("keyInput").value;
+
+    let correctKey =
+    localStorage.getItem("thnkey");
+
+    if (enteredKey == correctKey) {
+
+        document.body.innerHTML =
+        "<h1>ACCESS GRANTED</h1>" +
+        "<p>Welcome to The Hidden Net.</p>";
+
+    }
+
+    else {
+
+        alert("Invalid password");
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
